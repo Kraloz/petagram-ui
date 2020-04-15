@@ -27,8 +27,8 @@ export default {
   data() {
     return {
       show1: false,
-      username: "",
-      password: "",
+      username: "taprile",
+      password: "gordo42069",
       valid: true,
       rules: {
         required: value => !!value || "Required."
@@ -47,7 +47,7 @@ export default {
             username: this.username,
             password: this.password
           })
-          .then(res => console.log(res));
+          .then(_ => this.$router.push("/home/"));
       }
     }
   }
