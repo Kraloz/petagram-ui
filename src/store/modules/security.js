@@ -10,9 +10,11 @@ const security = {
   actions: {
     async logIn({ commit }, { username, password }) {
       console.log(username, password)
+      console.log('')
       const res = await Interceptor.authenticate.post(`${urlAPI}/login/`, { username, password })
       commit('SET_LOGGED_IN', true)
-      persistData.setItem('token', false)
+      persistData.setItem('token', res.data.access)
+      persistData.setItem('refresh', res.data.refresh)
       return res.data
     }
   },

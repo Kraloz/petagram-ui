@@ -1,13 +1,13 @@
 const prefix = `${process.env.VUE_APP_PREFIX}`
 
 const persistData = {
-  setItem(name, value, stringify) {
+  setItem(name, value, stringify = false) {
     if (stringify) {
       localStorage.setItem(`${prefix}-${name}`, JSON.stringify(value))
     }
-    localStorage.setItem(`${prefix}-name`, value)
+    localStorage.setItem(`${prefix}-${name}`, value)
   },
-  getItem(name, jsonParse) {
+  getItem(name, jsonParse = false) {
     const item = localStorage.getItem(`${prefix}-${name}`)
 
     if (jsonParse) {
