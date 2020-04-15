@@ -22,7 +22,7 @@ const Interceptor = {
     )
   },
   async post(url, data = {}) {
-    return axios.post(url, { headers: this.getHeaders(), data })
+    return axios.post(url, { data },{headers: this.getHeaders()})
   },
   async put(url, data = {}) {
     return axios.put(url, { headers: this.getHeaders(), data })
