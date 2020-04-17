@@ -5,7 +5,7 @@
         <v-icon>mdi-account</v-icon>
       </v-list-item-avatar>
       <v-list-item-content>
-        <v-list-item-title class="title font-weight-regular">Gordo</v-list-item-title>
+        <v-list-item-title class="title font-weight-regular">{{ post.profile.name }}</v-list-item-title>
       </v-list-item-content>
     </v-list-item>
 
