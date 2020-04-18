@@ -17,11 +17,9 @@ function securedRoute(path, name, component) {
     name,
     component,
     beforeEnter: (to, from, next) => {
-      if (store.dispatch.isLoggedIn) {
-        console.log('nextt')
+      if (store.state.security.isLoggedIn) {
         next()
       } else {
-        console.log('nope')
         next({ name: "Login" })
       }
     }
@@ -33,7 +31,7 @@ const routes = [
     path: '/',
     name: 'Index',
     beforeEnter: (to, from, next) => {
-      if (store.getters.isLoggedIn) {
+      if (store.state.security.isLoggedIn) {
         next({ name: "Home" })
       } else {
         next({ name: "Login" })
@@ -45,7 +43,7 @@ const routes = [
     name: 'Login',
     component: LoginPage,
     beforeEnter: (to, from, next) => {
-      if (store.getters.isLoggedIn) {
+      if (store.state.security.isLoggedIn) {
         next({ name: "Home" })
       } else {
         next()

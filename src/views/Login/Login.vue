@@ -47,7 +47,6 @@ export default {
           password: this.password
         });
         this.$router.push({ name: "Home" });
-        // console.log(this.$router)
       }
     }
   }
