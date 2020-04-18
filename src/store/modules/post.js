@@ -7,7 +7,7 @@ const post = {
     PostList: []
   },
   actions: {
-    async getPosts({ commit }, { page, page_size = 2 }) {
+    async getPosts({ commit }, { page, page_size = 4 }) {
       const res = await Interceptor.get(`${urlAPI}/?page=${page}&page_size=${page_size}`)
       commit('SET_POSTS', res.data.results)
       return res.data.results
@@ -18,7 +18,7 @@ const post = {
       }
       const formData = new FormData();
       formData.append('file', file);
-      const res = await Interceptor.post(`${urlAPI}/image/s`, formData)
+      const res = await Interceptor.post(`${urlAPI}/image/`, formData)
       return res.data
     }
   },
