@@ -16,6 +16,9 @@ const persistData = {
       return item
     }
   },
+  removeItem(name) {
+    localStorage.removeItem(`${prefix}-${name}`)
+  }
 
 }
 

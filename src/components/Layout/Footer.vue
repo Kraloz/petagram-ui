@@ -1,5 +1,5 @@
 <template>
-  <v-bottom-navigation>
+  <v-bottom-navigation fixed>
     <v-btn to="/home/">
       <span>Home</span>
       <v-icon>mdi-home-outline</v-icon>
@@ -18,5 +18,5 @@
 </template>
 
 <script>
-export default {};
+export default {}
 </script>

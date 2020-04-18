@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <post-card v-for="(post, i) in PostList" :post="post" :key="i" />
+    <post-card class="mb-4" v-for="(post, i) in PostList" :post="post" :key="i" />
   </v-container>
 </template>
 

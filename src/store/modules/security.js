@@ -1,29 +1,41 @@
 import Interceptor from "@/plugins/interceptor"
 import persistData from "@/plugins/persistData"
+import Decoder from "@/plugins/decoder"
+import * as dayjs from 'dayjs'
 
 const urlAPI = `${process.env.VUE_APP_URL_API}${process.env.VUE_APP_URL_SECURITY}`
 
 const security = {
-  state: {
-    logged_in: false
-  },
   actions: {
-    async logIn({ commit }, { username, password }) {
-      console.log(username, password)
-      console.log('')
-      const res = await Interceptor.authenticate.post(`${urlAPI}/login/`, { username, password })
-      commit('SET_LOGGED_IN', true)
-      persistData.setItem('token', res.data.access)
-      persistData.setItem('refresh', res.data.refresh)
-      return res.data
+    async logIn({ }, { username, password }) {
+      try {
+        const res = await Interceptor.authenticate.post(`${urlAPI}/login/`, { username, password })
+        persistData.setItem('access', res.data.access)
+        persistData.setItem('refresh', res.data.refresh)
+        // expiration date
+        const { exp } = Decoder.decodeToken(res.data.access)
+        persistData.setItem('expire', dayjs.unix(exp).format())
+        return
+      } catch (err) {
+        console.error(err)
+      }
+    },
+    async logOut() {
+      persistData.removeItem('access')
+      persistData.removeItem('refresh')
+      persistData.removeItem('expire')
+      return
     }
   },
-  mutations: {
-    SET_LOGGED_IN(state, value) {
-      state.logged_in = value
+  mutations: {},
+  getters: {
+    isLoggedIn: () => {
+      console.log('isLoggedIn?', token !== null)
+      console.log('value :', persistData.getItem('access'))
+      const token = persistData.getItem('access')
+      return token !== null
     }
-  },
-  getters: {}
+  }
 }
 
 export default security

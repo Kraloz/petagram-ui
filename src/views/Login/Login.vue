@@ -38,16 +38,16 @@ export default {
     };
   },
   methods: {
-    logIn() {
+    async logIn() {
       this.$refs.form.validate();
 
       if (this.valid) {
-        this.$store
-          .dispatch("logIn", {
-            username: this.username,
-            password: this.password
-          })
-          .then(_ => this.$router.push("/home/"));
+        await this.$store.dispatch("logIn", {
+          username: this.username,
+          password: this.password
+        });
+        this.$router.push({ name: "Home" });
+        // console.log(this.$router)
       }
     }
   }

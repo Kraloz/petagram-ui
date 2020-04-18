@@ -5,12 +5,13 @@
 </template>
 
 <script>
+// TODO: enviar foto con post
 export default {
   methods: {
     uploadFile(files) {
-      files.forEach(file => {
-        this.$store.dispatch('uploadFile', file)
-      })
+      // files.forEach(file => {
+      //   this.$store.dispatch('uploadFile', file)
+      // })
     }
   }
 };
